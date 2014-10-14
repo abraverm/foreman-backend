@@ -1,0 +1,13 @@
+---
+:backends:
+  - foreman
+  - yaml
+
+:hierarchy:
+  - "%{::fqdn}"
+  - global
+
+:yaml:
+  :datadir: "/etc/puppet/hiera/hiera_%{environment}/hieradata"
+
+:logger: console
