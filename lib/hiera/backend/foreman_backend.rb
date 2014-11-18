@@ -3,9 +3,6 @@
 class Hiera
   module Backend
     class Foreman_backend
-      def initialize
-      end
-
       def lookup(key, scope, order_override, resolution_type)
         fqdn    = scope['fqdn']
         Hiera.debug("Performing Foreman ENC lookup on #{fqdn} for #{key}")
@@ -14,7 +11,7 @@ class Hiera
         foreman = YAML.load(`/etc/puppet/external_node_v2.rb #{fqdn}`)
         Hiera.debug("Imported Foreman yaml: #{foreman}")
 
-        unless foreman.nil?
+        unless foreman.nil? or defined?(foreman)
           begin
           case key
           when 'environment'
