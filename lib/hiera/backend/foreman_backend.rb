@@ -15,7 +15,7 @@ class Hiera
           foreman = YAML.load(`/etc/puppet/external_node_v2.rb #{fqdn}`)
 	end
         Hiera.debug("Imported Foreman yaml:\n#{YAML.dump(foreman)}")
-	unless foreman.nil? or not defined?(foreman)
+	unless foreman.nil? or not defined?(foreman) or (foreman == false)
           begin
           case key
             when "environment"
